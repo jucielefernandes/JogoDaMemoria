@@ -1,12 +1,11 @@
+
 <script>
   import VoltarMenu from "./VoltarMenu.svelte";
   import { estado } from "./Estado.js";
   import { trocarEstadoDoJogo } from "./Estado.js";
 
-  // Esta classe representa o estado da tela jogar,
-  // ela guarda o estado da tabela com trues e false,
-  // a quantidade de atual de elementos verdadeiros,
-  // e quantidade verdadeiros necessária para ganhar.
+
+
   class EstadoTabela {
     constructor(limiteVerdadeiros, tabela) {
       this.limiteVerdadeiros = limiteVerdadeiros;
@@ -15,15 +14,17 @@
     }
   }
 
-  // não seria melhor gerar aleatoriamente?
+  
+
+  
   let tabela = [
-    [false, false],
-    [false, false],
-    [false, false],
+    ['https://picsum.photos/id/237/536/354', 'https://picsum.photos/id/237/536/354'],
+    ['https://picsum.photos/id/237/536/354', 'https://picsum.photos/id/237/536/354'],
+    ['https://picsum.photos/id/237/536/354', 'https://picsum.photos/id/237/536/354'],
   ];
 
   let cartas = [
-    ["https://picsum.photos/536/354", "https://picsum.photos/536/354"],
+    ["https://i.picsum.photos/id/44/536/354.jpg?hmac=gr9s90YEHTR2r0xSI_Q-BzX07et5YTXdnM0uRl9gYIc" , "https://i.picsum.photos/id/44/536/354.jpg?hmac=gr9s90YEHTR2r0xSI_Q-BzX07et5YTXdnM0uRl9gYIc"],
     [
       "https://picsum.photos/id/1084/536/354",
       "https://picsum.photos/id/1084/536/354",
@@ -34,14 +35,31 @@
     ],
   ];
 
+
+  let emb1 =  cartas[0].sort(() => Math.random() - 0.5)
+  
+  
+ 
+
   let verso = "https://picsum.photos/id/237/536/354";
 
-  // toda vez que entramos na tela de jogar o estado do jogo é resetado
+  let x;
+  let y;
+
+  let escolha1;
+  let escolha2;
+
+  
   let estadoTabela = new EstadoTabela(6, tabela);
 
-  // não ficaria melhor com POO?
+
+  let pontos = 0;
+
+
+
+  
   function computarVerdadeiros(tabela) {
-    let verdadeiros = 0;
+    let verdadeiros=0
 
     for (let i = 0; i < tabela.length; i++) {
       for (let j = 0; j < tabela.length; j++) {
@@ -54,43 +72,104 @@
     return verdadeiros;
   }
 
-  // esta função contém a lógica do jogo
-  function atualizarTabela(i, j) {
-    // atualiza o número de verdadeiros presentes na tabela
-    if (estadoTabela.tabela[i][j]) {
-      estadoTabela.verdadeiros--;
-    } else {
-      estadoTabela.verdadeiros++;
-    }
+  function desflip(x,y,i,j){
+    setTimeout(function(){
+      
+      
+      estadoTabela.tabela[i][j] = verso;
+      estadoTabela.tabela[x][y] = verso;
+    },2000);
 
-    // troca o estado do índice na tabela que o jogador clicou
-    // após a execução desta linha, o html da página é reconstruído automáticamente pelo svelte.
-    estadoTabela.tabela[i][j] = !estadoTabela.tabela[i][j];
+    return;
 
-    // testa se a condição de vitória foi atendida
   }
+
+  function reset(){
+    escolha1 = null
+    escolha2=null
+    return;
+  }
+  
+  
+  function flip (i,j){
+    
+
+      estadoTabela.tabela[i][j] = cartas[i][j];
+
+      if(escolha2==null ){
+        x = i;
+        y = j
+        escolha2=cartas[x][y]
+        
+
+      }else if(escolha1==null){
+        
+        escolha1 = cartas[i][j]
+       
+      }
+      
+      
+      
+      
+      
+      
+      if(escolha1==escolha2 && escolha1!=null && escolha2!=null){
+
+        igual(escolha1,escolha2,x,y,i,j)
+      }else if (escolha1!=escolha2 && escolha1!=null && escolha2!=null){
+
+        diferente(escolha1,escolha2,x,y,i,j)
+      }
+      
+  }
+
+
+  function igual(escolha1,escolha2,x,y,i,j){
+    
+
+      if(escolha2===escolha1){
+        
+        pontos++
+
+        if(pontos==3){
+          window.alert("Você venceu")
+        }
+        reset(escolha1,escolha2)
+        
+      }
+    
+  }
+
+  function diferente(escolha1,escolha2, x,y,i,j){
+    
+
+     
+     
+      console.log("diferentes")
+
+     
+      reset(escolha1,escolha2)
+      desflip(x,y,i,j)
+  
+  
+}
+
+ 
+  
 </script>
 
-<svelte:head>
-  <link rel="stylesheet" href="/styles/jogar.css" />
-</svelte:head>
 
-<!-- notem como utilizamos o '{' e '}' para inserir indicar ao svelte como criar o HTML dinâmicamente -->
 <h1>
-  Falta trocar {estadoTabela.limiteVerdadeiros - estadoTabela.verdadeiros}
+  Pontos:{pontos} 
 </h1>
 
-<!-- criação da tabela de forma dinâmica, similar aos laços duplos do node que vocês já estão cansados de ver -->
 <table>
   {#each estadoTabela.tabela as linha, i}
     <tr>
       {#each linha as dado, j}
-        <td on:click={() => atualizarTabela(i, j)}>
-          {#if dado == false}
-            <img src="https://picsum.photos/id/237/536/354" />
-          {:else}
-            <img src={cartas[i][j]} />
-          {/if}
+        <td  id={`${i}-${j}`}   on:click={() => flip(i, j)}>
+          
+          <img src={dado} alt="">
         </td>
       {/each}
     </tr>
@@ -99,7 +178,7 @@
 
 <br />
 
-<!-- reaproveita o botão de voltar para o menu -->
-<VoltarMenu />
 
 <VoltarMenu />
+
+
