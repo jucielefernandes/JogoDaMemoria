@@ -139,7 +139,7 @@
       reset(escolha1, escolha2);
       pontos++;
     }
-    alert(" Voce Acertou!!!");
+   
   }
 
   function diferente(escolha1, escolha2, x, y, i, j) {
