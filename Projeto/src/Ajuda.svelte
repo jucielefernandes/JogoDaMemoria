@@ -3,8 +3,6 @@
 </script>
 
 <nav class="caixa">
-  <h1 class="titulo">Sobre o jogo</h1>
-  <h2>Esse jogo foi criado pelos alunos Juciele Fernandes, Adryan do curso Tecnologo em Sistemas para Internet no IFPE campus Igarassu na disciplina Logica administrada pelo professor Allan Diego  </h2>
   <div>
     <h1 class="titulo">Como Jogar</h1>
     <h2>
@@ -16,7 +14,7 @@
   </div>
 </nav>
 
-<VoltarMenu />
+<VoltarMenu  class="v"/>
 
 <style>
   h2 {
@@ -28,5 +26,8 @@
     padding: 25px;
     border: 25px solid navy;
     margin: 25px;
+  }
+  .v{
+	color:#ffae00;
   }
 </style>
