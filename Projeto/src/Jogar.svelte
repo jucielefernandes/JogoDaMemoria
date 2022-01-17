@@ -18,26 +18,27 @@
 
   
   let tabela = [
-    ['https://picsum.photos/id/237/536/354', 'https://picsum.photos/id/237/536/354'],
-    ['https://picsum.photos/id/237/536/354', 'https://picsum.photos/id/237/536/354'],
-    ['https://picsum.photos/id/237/536/354', 'https://picsum.photos/id/237/536/354'],
+    ['https://picsum.photos/id/237/536/354', 'https://picsum.photos/id/237/536/354', "https://picsum.photos/id/237/536/354","https://picsum.photos/id/237/536/354"],
+    ['https://picsum.photos/id/237/536/354', 'https://picsum.photos/id/237/536/354',"https://picsum.photos/id/237/536/354","https://picsum.photos/id/237/536/354"],
+    ['https://picsum.photos/id/237/536/354', 'https://picsum.photos/id/237/536/354',"https://picsum.photos/id/237/536/354","https://picsum.photos/id/237/536/354"],
   ];
 
   let cartas = [
-    ["https://i.picsum.photos/id/44/536/354.jpg?hmac=gr9s90YEHTR2r0xSI_Q-BzX07et5YTXdnM0uRl9gYIc" , "https://i.picsum.photos/id/44/536/354.jpg?hmac=gr9s90YEHTR2r0xSI_Q-BzX07et5YTXdnM0uRl9gYIc"],
+    [ "https://i.picsum.photos/id/292/536/354.jpg?hmac=JmwZG4JsRmarXfsRwZuzcaOYhm5ZhvdpGAoX6a-syQ0" , "https://i.picsum.photos/id/44/536/354.jpg?hmac=gr9s90YEHTR2r0xSI_Q-BzX07et5YTXdnM0uRl9gYIc","https://i.picsum.photos/id/866/536/354.jpg?hmac=tGofDTV7tl2rprappPzKFiZ9vDh5MKj39oa2D--gqhA","https://i.picsum.photos/id/1060/536/354.jpg?blur=2&hmac=0zJLs1ar00sBbW5Ahd_4zA6pgZqCVavwuHToO6VtcYY"],
     [
-      "https://picsum.photos/id/1084/536/354",
-      "https://picsum.photos/id/1084/536/354",
+     "https://i.picsum.photos/id/292/536/354.jpg?hmac=JmwZG4JsRmarXfsRwZuzcaOYhm5ZhvdpGAoX6a-syQ0",
+      "https://picsum.photos/id/1084/536/354","https://i.picsum.photos/id/1060/536/354.jpg?blur=2&hmac=0zJLs1ar00sBbW5Ahd_4zA6pgZqCVavwuHToO6VtcYY",
+      "https://i.picsum.photos/id/870/536/354.jpg?blur=2&grayscale&hmac=A5T7lnprlMMlQ18KQcVMi3b7Bwa1Qq5YJFp8LSudZ84"
     ],
     [
-      "https://i.picsum.photos/id/292/536/354.jpg?hmac=JmwZG4JsRmarXfsRwZuzcaOYhm5ZhvdpGAoX6a-syQ0",
-      "https://i.picsum.photos/id/292/536/354.jpg?hmac=JmwZG4JsRmarXfsRwZuzcaOYhm5ZhvdpGAoX6a-syQ0",
+      "https://picsum.photos/id/1084/536/354",
+      "https://i.picsum.photos/id/44/536/354.jpg?hmac=gr9s90YEHTR2r0xSI_Q-BzX07et5YTXdnM0uRl9gYIc",
+      "https://i.picsum.photos/id/866/536/354.jpg?hmac=tGofDTV7tl2rprappPzKFiZ9vDh5MKj39oa2D--gqhA",
+      "https://i.picsum.photos/id/870/536/354.jpg?blur=2&grayscale&hmac=A5T7lnprlMMlQ18KQcVMi3b7Bwa1Qq5YJFp8LSudZ84"
     ],
   ];
 
 
-  let emb1 =  cartas[0].sort(() => Math.random() - 0.5)
-  
   
  
 
@@ -54,9 +55,31 @@
 
 
   let pontos = 0;
+  let erros = 0;
 
 
+  function shuffle(array) {
+  let currentIndex = array.length,  randomIndex;
 
+  
+  while (currentIndex != 0) {
+
+    
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+
+  return array;
+
+  //Função de embaralhar array:https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+}
+
+cartas = [shuffle(cartas[0]),shuffle(cartas[1]),shuffle(cartas[2])];
+cartas = shuffle(cartas)
   
   function computarVerdadeiros(tabela) {
     let verdadeiros=0
@@ -78,7 +101,7 @@
       
       estadoTabela.tabela[i][j] = verso;
       estadoTabela.tabela[x][y] = verso;
-    },2000);
+    },1000);
 
     return;
 
@@ -87,6 +110,7 @@
   function reset(){
     escolha1 = null
     escolha2=null
+    
     return;
   }
   
@@ -108,14 +132,12 @@
        
       }
       
-      
-      
-      
-      
+ 
       
       if(escolha1==escolha2 && escolha1!=null && escolha2!=null){
 
         igual(escolha1,escolha2,x,y,i,j)
+
       }else if (escolha1!=escolha2 && escolha1!=null && escolha2!=null){
 
         diferente(escolha1,escolha2,x,y,i,j)
@@ -124,38 +146,33 @@
   }
 
 
-  function igual(escolha1,escolha2,x,y,i,j){
+  function igual(escolha1,escolha2){
     
 
       if(escolha2===escolha1){
         
-        pontos++
-
-        if(pontos==3){
-          window.alert("Você venceu")
-        }
-        reset(escolha1,escolha2)
         
-      }
+        
+        reset(escolha1,escolha2)
+
+       
+      }pontos++
+
+      
+ 
     
   }
 
   function diferente(escolha1,escolha2, x,y,i,j){
     
 
-     
-     
-      console.log("diferentes")
-
-     
       reset(escolha1,escolha2)
       desflip(x,y,i,j)
-  
+      erros++
   
 }
 
  
-  
 </script>
 
 
@@ -163,11 +180,13 @@
   Pontos:{pontos} 
 </h1>
 
+<h1>Erros:{erros}</h1>
+
 <table>
   {#each estadoTabela.tabela as linha, i}
     <tr>
       {#each linha as dado, j}
-        <td  id={`${i}-${j}`}   on:click={() => flip(i, j)}>
+        <td  id={`${i}-${j}`}  on:click={() => flip(i, j)}>
           
           <img src={dado} alt="">
         </td>
@@ -175,6 +194,9 @@
     </tr>
   {/each}
 </table>
+
+
+
 
 <br />
 
