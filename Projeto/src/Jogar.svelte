@@ -150,7 +150,7 @@
     reset(escolha1, escolha2);
     desflip(x, y, i, j);
     erros++;
-    if (erros == 10) {
+    if (erros > 10) {
       alert("Você perdeu");
       document.location.reload(true);
     }
