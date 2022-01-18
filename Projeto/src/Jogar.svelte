@@ -184,7 +184,7 @@
   img {
     transition: 2s;
     cursor: pointer;
-    border: 10px solid navy;
+    border: 10px solid white;
   }
 
   img:hover {

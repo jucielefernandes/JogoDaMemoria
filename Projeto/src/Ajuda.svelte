@@ -26,7 +26,7 @@
   .caixa {
     width: 300px;
     padding: 25px;
-    border: 10px solid navy;
+    border: 10px solid white;
     margin: 25px;
   }
   .centralizar{
