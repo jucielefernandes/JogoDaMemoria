@@ -188,7 +188,7 @@
   }
 
   img:hover {
-    transform: scale(2);
+    transform: scale(1.1);
   }
 
   .caixa{
