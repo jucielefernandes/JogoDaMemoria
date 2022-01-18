@@ -2,6 +2,7 @@
   import VoltarMenu from "./VoltarMenu.svelte";
 </script>
 
+<div class="centralizar">
 <nav class="caixa">
   <div>
     <h1 class="titulo">Como Jogar</h1>
@@ -13,8 +14,9 @@
     </h2>
   </div>
 </nav>
+</div>
 
-<VoltarMenu  class="v"/>
+<VoltarMenu/>
 
 <style>
   h2 {
@@ -24,10 +26,11 @@
   .caixa {
     width: 300px;
     padding: 25px;
-    border: 25px solid navy;
+    border: 10px solid navy;
     margin: 25px;
   }
-  .v{
-	color:#ffae00;
+  .centralizar{
+    display: flex;
+	justify-content: center;
   }
 </style>

@@ -71,7 +71,6 @@
     while (currentIndex != 0) {
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
-      
 
       [array[currentIndex], array[randomIndex]] = [
         array[randomIndex],
@@ -86,8 +85,6 @@
 
   cartas = [shuffle(cartas[0]), shuffle(cartas[1]), shuffle(cartas[2])];
   cartas = shuffle(cartas);
-
-
 
   function computarVerdadeiros(tabela) {
     let verdadeiros = 0;
@@ -138,31 +135,26 @@
   }
 
   function igual(escolha1, escolha2) {
-    if (escolha2 === escolha1 ) {
+    if (escolha2 === escolha1) {
       reset(escolha1, escolha2);
       pontos++;
-        if(pontos==6){
+      if (pontos == 6) {
         alert("Você venceu");
-  
+
         document.location.reload(true); // Reiniciar encontrado: https://developer.mozilla.org/pt-BR/docs/Web/API/Location/reload
-        }
+      }
     }
-   
   }
 
   function diferente(escolha1, escolha2, x, y, i, j) {
-   
     reset(escolha1, escolha2);
     desflip(x, y, i, j);
     erros++;
-    if(erros==6){
+    if (erros == 10) {
       alert("Você perdeu");
       document.location.reload(true);
     }
   }
- 
-
-
 </script>
 
 <h1>
@@ -170,18 +162,37 @@
 </h1>
 
 <h1>Erros:{erros}</h1>
-
-<table>
-  {#each estadoTabela.tabela as linha, i}
-    <tr>
-      {#each linha as dado, j}
-        <td id={`${i}-${j}`} on:click={() => flip(i, j)}>
-          <img src={dado} alt="" />
-        </td>
-      {/each}
-    </tr>
-  {/each}
-</table>
+<div class="caixa">
+  <table>
+    {#each estadoTabela.tabela as linha, i}
+      <tr>
+        {#each linha as dado, j}
+          <td id={`${i}-${j}`} on:click={() => flip(i, j)}>
+            <img src={dado} alt="" />
+          </td>
+        {/each}
+      </tr>
+    {/each}
+  </table>
+</div>
 <br />
 
 <VoltarMenu />
+
+<style>
+
+  img {
+    transition: 2s;
+    cursor: pointer;
+    border: 10px solid navy;
+  }
+
+  img:hover {
+    transform: scale(2);
+  }
+
+  .caixa{
+  display: flex;
+	justify-content: center;
+  }
+</style>

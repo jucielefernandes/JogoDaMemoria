@@ -38,8 +38,13 @@
     display: flex;
     padding: 30px;
     margin: auto;
+    transition: all .5s;
+    
+
     }
   button:hover {
     background-position: 100px;
+    border-radius: 20%;
+    border: 10px solid white;
   }
   </style>
