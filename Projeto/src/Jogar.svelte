@@ -71,6 +71,7 @@
     while (currentIndex != 0) {
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
+      
 
       [array[currentIndex], array[randomIndex]] = [
         array[randomIndex],
@@ -85,6 +86,8 @@
 
   cartas = [shuffle(cartas[0]), shuffle(cartas[1]), shuffle(cartas[2])];
   cartas = shuffle(cartas);
+
+
 
   function computarVerdadeiros(tabela) {
     let verdadeiros = 0;
@@ -135,9 +138,14 @@
   }
 
   function igual(escolha1, escolha2) {
-    if (escolha2 === escolha1) {
+    if (escolha2 === escolha1 ) {
       reset(escolha1, escolha2);
       pontos++;
+        if(pontos==6){
+        alert("Você venceu");
+  
+        document.location.reload(true); // Reiniciar encontrado: https://developer.mozilla.org/pt-BR/docs/Web/API/Location/reload
+        }
     }
    
   }
@@ -147,16 +155,13 @@
     reset(escolha1, escolha2);
     desflip(x, y, i, j);
     erros++;
+    if(erros==6){
+      alert("Você perdeu");
+      document.location.reload(true);
+    }
   }
- function tentativas(erros,pontos){
-   if(erros == 2){
-     reset(pontos,erros)
-     erros = 0;
-     pontos = 0;
-   }
-   alert("Voce Perdeu")
-   
- }
+ 
+
 
 </script>
 
