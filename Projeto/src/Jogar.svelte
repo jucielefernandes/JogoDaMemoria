@@ -1,6 +1,7 @@
 <script>
   import VoltarMenu from "./VoltarMenu.svelte";
 
+
   class EstadoTabela {
     constructor(limiteVerdadeiros, tabela) {
       this.limiteVerdadeiros = limiteVerdadeiros;
@@ -150,7 +151,7 @@
     reset(escolha1, escolha2);
     desflip(x, y, i, j);
     erros++;
-    if (erros > 10) {
+    if (erros == 10) {
       alert("Você perdeu");
       document.location.reload(true);
     }

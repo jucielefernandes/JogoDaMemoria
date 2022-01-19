@@ -10,7 +10,7 @@
       Escolha duas cartas para desvirá-las. Caso formem um par, seus pontos são
       acrecentados no jogo. Caso contrário as cartas voltam a ficar com as
       figuras voltadas para baixo; O jogo termina quando todos os pares forem
-      formados ou a quantidade de erros forem superiores a 10.
+      formados ou a quantidade de erros forem iguais a 10.
     </h2>
   </div>
 </nav>
