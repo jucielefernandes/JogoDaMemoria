@@ -143,7 +143,7 @@
         if (pontos == 6) {
           alert("Você venceu");
           document.location.reload(true); // Reiniciar encontrado: https://developer.mozilla.org/pt-BR/docs/Web/API/Location/reload
-      }
+        }
       },1000)
     }
   }
@@ -152,10 +152,12 @@
     reset(escolha1, escolha2);
     desflip(x, y, i, j);
     erros++;
-    if (erros == 10) {
-      alert("Você perdeu");
-      document.location.reload(true);
-    }
+    setTimeout(function(){
+      if (erros == 10) {
+        alert("Você perdeu");
+        document.location.reload(true);
+      }
+    },1000)
   }
 </script>
 
