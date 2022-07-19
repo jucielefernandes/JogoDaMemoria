@@ -126,7 +126,14 @@
       escolha2 = cartas[x][y];
     } else if (escolha1 == null) {
       escolha1 = cartas[i][j];
+      console.log(i,j);
+      console.log(x,y);
     }
+    
+    if (escolha1 != null && escolha2 != null){
+      enderecoIgual(x, y, i, j);
+    } 
+    
 
     if (escolha1 == escolha2 && escolha1 != null && escolha2 != null) {
       igual(escolha1, escolha2, x, y, i, j);
@@ -158,6 +165,13 @@
         document.location.reload(true);
       }
     },1000)
+  }
+
+  function enderecoIgual (x,y,i,j) {
+    if (x == i && y == j){
+      desflip(x,y,i,j);
+      reset();
+    }
   }
 </script>
 
