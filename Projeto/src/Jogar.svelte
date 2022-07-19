@@ -139,11 +139,12 @@
     if (escolha2 === escolha1) {
       reset(escolha1, escolha2);
       pontos++;
-      if (pontos == 6) {
-        alert("Você venceu");
-
-        document.location.reload(true); // Reiniciar encontrado: https://developer.mozilla.org/pt-BR/docs/Web/API/Location/reload
+      setTimeout(function(){
+        if (pontos == 6) {
+          alert("Você venceu");
+          document.location.reload(true); // Reiniciar encontrado: https://developer.mozilla.org/pt-BR/docs/Web/API/Location/reload
       }
+      },1000)
     }
   }
 
