@@ -6,10 +6,6 @@
 ## Projeto de 1° período do curso Sistemas para Internet do IFPE - Campus Igarassu da disciplina de Programação Imperativa.
 
 
-### Autores: Adryan Nascimento, Daniel Felipe, Magnildo Bezerra, Juciele Fernandes e Pedro Henrique.
-
-
-
 ##  Menu
 ![Screenshot from 2022-06-16 00-37-00](https://user-images.githubusercontent.com/88512599/173985977-e8ca509b-3643-4fe3-801f-e197c3eac06c.png)
 
