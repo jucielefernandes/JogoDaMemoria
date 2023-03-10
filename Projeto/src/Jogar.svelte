@@ -126,7 +126,14 @@
       escolha2 = cartas[x][y];
     } else if (escolha1 == null) {
       escolha1 = cartas[i][j];
+      console.log(i,j);
+      console.log(x,y);
     }
+    
+    if (escolha1 != null && escolha2 != null){
+      enderecoIgual(x, y, i, j);
+    } 
+    
 
     if (escolha1 == escolha2 && escolha1 != null && escolha2 != null) {
       igual(escolha1, escolha2, x, y, i, j);
@@ -139,11 +146,12 @@
     if (escolha2 === escolha1) {
       reset(escolha1, escolha2);
       pontos++;
-      if (pontos == 6) {
-        alert("Você venceu");
-
-        document.location.reload(true); // Reiniciar encontrado: https://developer.mozilla.org/pt-BR/docs/Web/API/Location/reload
-      }
+      setTimeout(function(){
+        if (pontos == 6) {
+          alert("Você venceu");
+          document.location.reload(true); // Reiniciar encontrado: https://developer.mozilla.org/pt-BR/docs/Web/API/Location/reload
+        }
+      },1000)
     }
   }
 
@@ -151,9 +159,18 @@
     reset(escolha1, escolha2);
     desflip(x, y, i, j);
     erros++;
-    if (erros == 10) {
-      alert("Você perdeu");
-      document.location.reload(true);
+    setTimeout(function(){
+      if (erros == 10) {
+        alert("Você perdeu");
+        document.location.reload(true);
+      }
+    },1000)
+  }
+
+  function enderecoIgual (x,y,i,j) {
+    if (x == i && y == j){
+      desflip(x,y,i,j);
+      reset();
     }
   }
 </script>
